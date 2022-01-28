@@ -145,7 +145,6 @@
 				865A87FA2C73BD7E4612AC74 /* Pods-MDASizwe-MDASizweTests.debug.xcconfig */,
 				EBB1DFB7F9124B9337D9D10A /* Pods-MDASizwe-MDASizweTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -485,6 +484,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = TW23527C42;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = MDASizwe/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -511,6 +511,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = TW23527C42;
 				INFOPLIST_FILE = MDASizwe/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
