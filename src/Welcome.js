@@ -2,8 +2,6 @@ import React, {useState} from 'react';
 import {View,Text, StyleSheet, Button,UselessTextInput}  from  'react-native';
 import {useSelector, useDispatch} from 'react-redux';
 
-import { NavigationContainer } from '@react-navigation/native';
-
 
 import WelcomeInputs from './forms/welcomeform'
  
@@ -16,11 +14,7 @@ const WelcomeScreen  = (props) => {
     const dispatch = useDispatch();
     return (
         
-      <NavigationContainer>
-      {
-        <WelcomeInputs/>
-        }
-       </NavigationContainer>
+            <WelcomeInputs/>
            
 
     )

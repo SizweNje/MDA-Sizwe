@@ -40,7 +40,9 @@ class WelcomeInputs extends Component {
             <TouchableOpacity
                style = {styles.submitButton}
                onPress = {
-                  () => this.login(this.state.name)
+                  () => {this.login(this.state.name)
+                   navigation.navigate('Home')
+                  }
                }>
                <Text style = {styles.submitButtonText}> Submit </Text>
             </TouchableOpacity>
@@ -76,7 +78,7 @@ const styles = StyleSheet.create({
       margin: 15,
       height: 40,
       textAlign: 'center',
-      borderRadius:20
+      borderRadius:20,
    },
    submitButtonText:{
       color: 'white',
