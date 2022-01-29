@@ -46,6 +46,7 @@ const WelcomeScreen  = (props) => {
                defaultValue = {userName}
                placeholderTextColor = "#000000"
                autoCapitalize = "none"
+               
                onChangeText = {(value) => name = value}/>
            
            <View style={styles.fixToText}> 
@@ -61,7 +62,7 @@ const WelcomeScreen  = (props) => {
                   }
                   
                }>
-               <Text style = {styles.submitButtonText}> Reset </Text>
+               <Text style = {styles.clearButtonText}> Reset </Text>
             </TouchableOpacity>
             :null}
 

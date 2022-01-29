@@ -2,7 +2,6 @@
  import {
    StyleSheet
 } from 'react-native';
-import { block } from 'react-native-reanimated';
 
 export default StyleSheet.create({
  
@@ -19,7 +18,7 @@ export default StyleSheet.create({
   homeHeader:{
       marginBottom: 7,
       fontSize:20,
-      color: '#1A1A1A'
+      color: '#fff'
   
   }
   ,
@@ -92,18 +91,23 @@ export default StyleSheet.create({
  
  input: {
     height: 40,
-    borderColor: '#1A1A1A',
+    borderColor: '#696969',
+    color:'#fff',
+    backgroundColor:'#696969',
     borderWidth: 1,
     padding:10,
     borderRadius: 10,
-    margin:'1%'
+    marginTop:10,
+    marginBottom:20,
+    
  },
  header: {
     height: 40,
     padding:10,
     width: "100%",
     fontWeight: 'bold',
-    marginTop:50
+    marginTop:50,
+    color:'#fff'
  },
  submitButton: {
   marginTop: 10,
@@ -125,9 +129,13 @@ export default StyleSheet.create({
   borderRadius:10,
 },
  submitButtonText:{
-    color: 'white',
+    color: '#fff',
     textAlign: 'center',
  },
+ clearButtonText:{
+  color: '#000',
+  textAlign: 'center',
+},
  fixToText: {
   flexDirection: 'row',
   justifyContent: 'space-between',
@@ -137,9 +145,14 @@ export default StyleSheet.create({
 containerTop:{
   flex:1,
   padding: 20,
-
+  color:'#fff',
   backgroundColor:"#000000"
 }
+,
+textColor:{
+  color:"#fff"
+}
+
 
    
 })

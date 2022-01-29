@@ -27,9 +27,32 @@ import LinearGradient from 'react-native-linear-gradient';
     //alert(DeviceInfo.isEmulator())
 
      if(DeviceInfo.isEmulator()){
-       alert('Emulator')
+   
+       Alert.alert(
+        "Device Type",
+        "Emulator",
+        [
+          {
+            text: "Close",
+            onPress: () => console.log("Cancel Pressed"),
+            style: "cancel"
+          },
+          
+        ]
+      );
      }else{
-      alert('Device')
+      Alert.alert(
+        "Device Type",
+        "Device",
+        [
+          {
+            text: "Close",
+            onPress: () => console.log("Cancel Pressed"),
+            style: "cancel"
+          },
+          
+        ]
+      );
      }
      
   });
@@ -37,14 +60,38 @@ import LinearGradient from 'react-native-linear-gradient';
   return (
     <Provider store={store}>
     <NavigationContainer>
-    <Stack.Navigator>
+    <Stack.Navigator >
       <Stack.Screen 
-        options={{headerShadowVisible: false,title:'MDAInvest',headerTitleStyle:{color:'#fff'},headerStyle:{backgroundColor:'#000',color:'#fff'},}} 
+        options={
+          {headerShadowVisible: false,
+            title:'MDAInvest',
+            headerTitleStyle:{color:'#fff'}
+            ,headerStyle:{backgroundColor:'#000',
+            color:'#fff'},
+          }} 
         name="Home" 
         component={HomeScreen} />
       <Stack.Screen 
-      options={{headerShadowVisible: false, title:'Update'}} name="Welcome" component={Welcome} />
-      <Stack.Screen options={{headerShadowVisible: false}} name="Details" component={DetailScreen} />
+      options={{
+        headerShadowVisible: false,
+        title:'Welcome Form',
+        headerTitleStyle:{color:'#fff'},
+        headerStyle:{backgroundColor:'#000',
+        color:'#fff'},
+        headerBackTitle:" "
+        
+      }} 
+      name="Welcome" component={Welcome} />
+      <Stack.Screen 
+      options={{
+        headerShadowVisible: false,
+        title:'Detail View',
+        headerTitleStyle:{color:'#fff'},
+        headerStyle:{backgroundColor:'#000',
+        color:'#fff'},
+        headerBackTitle:" "
+      }} 
+      name="Details" component={DetailScreen} />
     </Stack.Navigator>
   </NavigationContainer>
   </Provider>
@@ -77,11 +124,11 @@ function HomeScreen({ navigation }) {
       "Swipe successful",
       userName,
       [
-        {
+        /*{
           text: "Cancel",
           onPress: () => console.log("Cancel Pressed"),
           style: "cancel"
-        },
+        },*/
         { text: "OK", onPress: () => console.log("OK Pressed") }
       ]
     );
