@@ -1,6 +1,0 @@
-module Pods_MDASizwe {
-  umbrella header "Pods-MDASizwe-umbrella.h"
-
-  export *
-  module * { export * }
-}

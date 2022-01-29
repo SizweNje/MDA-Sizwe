@@ -1,5 +1,5 @@
 {
-  "name": "MDASizwe",
+  "name": "MDAInvest",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -12,10 +12,12 @@
   "dependencies": {
     "@react-navigation/native": "^6.0.6",
     "@react-navigation/native-stack": "^6.2.5",
-    "@react-navigation/stack": "^6.0.11",
     "react": "17.0.2",
     "react-native": "0.67.1",
     "react-native-device-info": "^8.4.8",
+    "react-native-gesture-handler": "^2.2.0",
+    "react-native-linear-gradient": "^2.5.6",
+    "react-native-reanimated": "^2.3.1",
     "react-native-safe-area-context": "^3.3.2",
     "react-native-screens": "^3.10.2",
     "react-redux": "^7.2.6",

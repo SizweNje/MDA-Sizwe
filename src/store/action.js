@@ -1,7 +1,8 @@
 import {STORE, REMOVE} from './actionTypes';
 
-export const store = () => ({
+export const store = (value) => ({
     type:STORE,
+    value: value
 
 })
 

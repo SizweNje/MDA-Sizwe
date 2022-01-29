@@ -1,130 +1,179 @@
-import React from 'react';
-import { Provider} from 'react-redux'
+import React, {useState,useEffect} from 'react';
+import {useSelector, Provider} from 'react-redux'
 
 import WelcomeScreen from './src/Welcome';
 import {store} from './src/store/store'
+import SwipeButton from './src/widgets/SwipeButton';
+
+import styles from './src/assets/customStyles'
+import LinearGradient from 'react-native-linear-gradient';
 
  import {
-   SafeAreaView, View, Text, Button, StyleSheet,TouchableOpacity
+   SafeAreaView, View, Text, Button,TouchableOpacity, Alert,Pressable,Vibration
  } from 'react-native';
 
   import { NavigationContainer } from '@react-navigation/native';
   import { createNativeStackNavigator } from '@react-navigation/native-stack';
+  import DeviceInfo from 'react-native-device-info'
  
  
- const App: () => Node = () => {
+ const App = (props) => {
    
-  const Stack = createNativeStackNavigator();
+  const Stack = createNativeStackNavigator()
+
+  // Similar to componentDidMount and componentDidUpdate:
+  useEffect(() => {
+    // Update the document title using the browser API
+    //alert(DeviceInfo.isEmulator())
+
+     if(DeviceInfo.isEmulator()){
+       alert('Emulator')
+     }else{
+      alert('Device')
+     }
+     
+  });
 
   return (
+    <Provider store={store}>
     <NavigationContainer>
     <Stack.Navigator>
-      <Stack.Screen name="Home" component={HomeScreen} />
-      <Stack.Screen name="Welcome" component={Welcome} />
-      <Stack.Screen name="Test" component={HomeScreen} />
+      <Stack.Screen 
+        options={{headerShadowVisible: false,title:'MDAInvest',headerTitleStyle:{color:'#fff'},headerStyle:{backgroundColor:'#000',color:'#fff'},}} 
+        name="Home" 
+        component={HomeScreen} />
+      <Stack.Screen 
+      options={{headerShadowVisible: false, title:'Update'}} name="Welcome" component={Welcome} />
+      <Stack.Screen options={{headerShadowVisible: false}} name="Details" component={DetailScreen} />
     </Stack.Navigator>
   </NavigationContainer>
+  </Provider>
   );
 };
 
 
 function Welcome() {
   return (
-    <SafeAreaView >
-      <Provider store={store}>
+    <SafeAreaView  style = {styles.containerTop} >
         <WelcomeScreen/>
-      </Provider>
     </SafeAreaView>
   );
 }
 
 function HomeScreen({ navigation }) {
+
+  const data = useSelector((state) => state);
+  const {userName} = data
+
+  const [toggleState, setToggleState] = useState(false);
+
+  const handleToggle = (value) => {
+    
+    setToggleState(value)
+
+  if(value){
+    Vibration.vibrate()
+    Alert.alert(
+      "Swipe successful",
+      userName,
+      [
+        {
+          text: "Cancel",
+          onPress: () => console.log("Cancel Pressed"),
+          style: "cancel"
+        },
+        { text: "OK", onPress: () => console.log("OK Pressed") }
+      ]
+    );
+    setToggleState(!value)
+  }
+  };
   return (
     <View style={styles.container}>
-      <Text style={styles.homeHeader}>4 vartiations of buttons </Text>
+      <Text style={styles.nameHeader}>{userName} </Text>
       <Button
-        style={styles.button}
-        title="Press me"
+        style={styles.buttonOne}
+        title="Start Here"
+        color="#06d6a0"
         onPress={() => navigation.navigate('Welcome')}
       />
       <TouchableOpacity
                style = {styles.buttonTwo}
                onPress = {
-                  () => {
-                   navigation.navigate('Home')
-                  }
-               }>
+                () => navigation.navigate('Details')
+                
+             }>
                <Text style = {styles.buttonTextTwo}> Press Me </Text>
       </TouchableOpacity>
-      <TouchableOpacity
-               style = {styles.buttonThree}
-               onPress = {
-                  () => {
-                   navigation.navigate('Home')
-                  }
-               }>
-               <Text style = {styles.buttonTextThree}> Press Me </Text>
-      </TouchableOpacity>
+      
+      
+      
+    <LinearGradient colors={['#06d6a0', '#1b9aaa']}
+    style={styles.buttonThree} 
+    start={{x: 0.0, y: 0.5}}
+    end={{x: 1, y: 0.5}}>
+
+<Pressable  onPress={() =>navigation.navigate('Welcome')}>
+      <Text style={styles.buttonTextThree}>Press Me</Text>
+    </Pressable>
+
+
+</LinearGradient>
+      <SwipeButton onToggle={handleToggle} />
     </View>
   );
 }
 
-export default App;
 
+function DetailScreen({ navigation }) {
 
-const styles  = StyleSheet.create({
- 
-  container:{
-    margin: 10,
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'flex-end' 
-  },
-  homeHeader:{
-      marginBottom: 20,
-      fontSize:20,
-      fontWeight:'bold',
-      color: '#0000ff'
-  }
-  ,
-    buttonTwo: {
-      backgroundColor: '#A9A9A9',
-      padding: 10,
-      margin: 10,
-      height: 40,
-      textAlign: 'center',
-      borderRadius:7,
-      width:'100%',
+  const data = useSelector((state) => state);
+  const {userName} = data
+
+  return (
+    <View style={styles.container}>
+      <Text style={styles.nameHeader}>{userName} </Text>
       
-    },
-    buttonTextTwo:{
-      color: '#1A1A1A',
-      textAlign: 'center',
-   }
-    ,
-    buttonThree: {
-      backgroundColor: '#1A1A1A',
-      padding: 10,
-      margin: 15,
-      height: 40,
-      textAlign: 'center',
-      borderRadius:7,
-      width:'100%'
-    },
-     buttonTextThree:{
-      color: 'white',
-      textAlign: 'center',
-   }
-    ,
-    buttonOne: {
-      backgroundColor: 'green',
-      width: '100%',
-      height: 40,
-      margin: 10,
-    }
-    ,
+      <Text style={styles.homeHeader}> We see your name is stored as  </Text>
+      <Text style={styles.homeHeaderSub}>  {userName} </Text>
+      <View style={styles.fixToText}> 
+           
 
-   
-})
+           
+            <TouchableOpacity
+               style = {styles.removeButton}
+               onPress = {
+                () =>navigation.navigate('Home')
+                  
+               }>
+               <Text style = {styles.submitButtonText}> Home </Text>
+            </TouchableOpacity>
+           
+
+
+            <LinearGradient colors={['#06d6a0', '#1b9aaa']}
+              style={styles.submitButton} 
+              start={{x: 0.0, y: 0.5}}
+              end={{x: 1, y: 0.5}}>
+
+            <TouchableOpacity
+               onPress = {
+                  () => navigation.navigate('Welcome')
+                  
+               }>
+               <Text style = {styles.submitButtonText}> Update Name </Text>
+            </TouchableOpacity>
+
+
+</LinearGradient>
+
+            </View>
+    </View>
+  );
+}
+
+//
+
+export default App;
 
 
